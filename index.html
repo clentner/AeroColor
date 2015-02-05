@@ -1,0 +1,77 @@
+
+<!DOCTYPE html><html><head><title>What colour is it? RGB-cyclic version</title>
+<meta charset="UTF-8" >
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:800,400,300' rel='stylesheet' type='text/css'>
+<style>
+
+@media all and (max-width: 1024px) {
+
+h1 { font-family:"open sans"; font-size:40px; font-weight:300; color:white; transition:all 0.6s; -webkit-transition:all 0.6s;}
+h2 { font-family:"open sans"; font-size:20px; font-weight:300; color:white; transition:all 0.6s; -webkit-transition:all 0.6s;}
+
+}
+
+@media all and (min-width: 1024px) {
+
+h1 { font-family:"open sans"; font-size:120px; font-weight:300; color:white; transition:all 0.6s; -webkit-transition:all 0.6s;}
+h2 { font-family:"open sans"; font-size:30px; font-weight:300; color:white; transition:all 0.6s; -webkit-transition:all 0.6s;}
+}
+
+table { position:absolute; width:100%; height:100%; top:0px; left:0px;}
+
+</style>
+
+</head>
+
+<body>
+
+<table><td height="100%" width="100%" align="center" valign="middle">
+<h1 id="t"></h1><br>
+<h2 id="h"></h2>
+</td></table>
+</body>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+function bound(R){
+	if (R > 255){
+		return parseInt(""+(510-R), 10);
+	}
+	return parseInt(""+R, 10);
+}
+
+function dotime(){
+	
+	$("body").css({"transition": "all 0.8s", "-webkit-transition": "all 0.8s"});
+	
+	var d = new Date();
+	var hours = d.getHours();
+	var mins = d.getMinutes();
+	var secs = d.getSeconds();
+	
+	secondsSinceMidnight = hours*60*60 + mins*60 + secs;
+	secondsPerDay = 24*60*60; // -ish
+	
+	coef = secondsSinceMidnight / secondsPerDay * 510;
+
+	R = bound((coef + 0) % 510);
+	B = bound((coef + 85) % 510);
+	G = bound((coef + 170 ) % 510);
+	
+	if (hours < 10) hours = "0" + hours;
+	if (mins < 10) mins = "0" + mins;
+	if (secs < 10) secs = "0" + secs;
+	$("#t").html(hours +" : "+ mins +" : "+ secs);
+	rgb = "rgb(" + R + "," + B + "," + G + ")";
+	console.log(rgb);
+	$("#h").css("background-color", rgb);
+	
+	$("body").css("background-color", rgb);
+	
+	setTimeout(function(){ dotime();}, 1000);
+}
+dotime();
+</script>
+
+</html>
