@@ -14,7 +14,7 @@ of windows. It can cycle around the [HSL color space](http://jsfiddle.net/afkLY/
 on an RGB starting point. Unlike What colour is it, the transitions are smooth, and no
 two similar colors are ever displayed far apart within a 24-hour period.
 
-For a quick demonstration of the RGB cycle method, see [this adaption](http://clentner.github.io/color.html) of 
+For a quick demonstration of the RGB cycle method, see [this adaption](http://clentner.github.io/AeroColor/) of 
 the What colour is it site.
 
 Thanks to KarmaCon for implementing the DwmGetColorizationParameters (I have added x64
