@@ -1,0 +1,9 @@
+Fields of the dcp struct
+
+0 and 1: ARGB values (uint)
+2: intensity (0-100) (without transparency)
+with transparency, 2 and 3 exhibit related behavior
+without transparency, 3 is always 0xA
+4 behaves strangely but related to the intensity slider
+5 is 0x32 constant with and without transparency
+6: transparency bool
